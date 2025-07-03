@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: gpas-4-backend
+    env: python
+    plan: free # Ensure it's on the free tier
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn src.main:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11 # Specify a Python version supported by Render
+      - key: FLASK_APP
+        value: src/main.py
+      - key: FLASK_ENV
+        value: production # Important for security and performance
+      - key: SECRET_KEY
+        generateValue: true # Render will generate a secure secret key
+      - key: JWT_SECRET_KEY
+        generateValue: true # Render will generate a secure JWT secret key
+      - key: GENERATIVE_AI_API_KEY
+        value: "" # Placeholder, to be set in Render dashboard if a real API is used
+      - key: GENERATIVE_AI_ENDPOINT
+        value: "" # Placeholder
+      - key: DATABASE_URL # Used by SQLAlchemy if we change DB later, but we'll override for SQLite
+        value: "sqlite:////var/data/gpas4.db" # Path for Render's persistent disk
+    disk:
+      name: gpas4-data
+      mountPath: /var/data
+      sizeGB: 1 # Smallest persistent disk size
+    healthCheckPath: /api/health # Use our existing health check endpoint
+    autoDeploy: true # Optional: automatically redeploy on push to the connected Git branch
+    # Optional: Specify the branch to deploy from, default is usually 'main' or 'master'
+    # repo: https://github.com/your_username/your_repo_name # This will be set in Render's UI
+    # branch: main
