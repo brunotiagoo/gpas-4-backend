@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 import os
 import threading
 import json
-from services.ai_arbitrage_brain import AIArbitrageBrain
+from .services.ai_arbitrage_brain import AIArbitrageBrain # Relative import
 
 # Inicializar Flask
 app = Flask(__name__)
