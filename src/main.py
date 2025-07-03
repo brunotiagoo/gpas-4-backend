@@ -21,7 +21,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'gpas-4-revolutionary-secret-key')
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'gpas-4-jwt-secret')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gpas4.db'
+
+# Configuração da Base de Dados - usa DATABASE_URL do ambiente se disponível (para Render), senão default local.
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///gpas4.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar extensões
