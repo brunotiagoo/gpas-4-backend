@@ -3,7 +3,7 @@ GPAS 4.0 - GLOBAL ARBITRAGE ENGINE
 Sistema REVOLUCIONÁRIO que supera Tactical Arbitrage, SourceMogul e todos os outros
 Foco: ARBITRAGEM GLOBAL com ROI de 300-500%
 """
-
+import os # Import os module
 import requests
 from bs4 import BeautifulSoup
 import time
