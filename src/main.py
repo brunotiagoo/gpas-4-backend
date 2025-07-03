@@ -255,7 +255,7 @@ def execute_purchase():
         data = request.get_json()
         
         # Criar objeto de oportunidade a partir dos dados
-        from services.ai_arbitrage_brain import ArbitrageOpportunity
+        from .services.ai_arbitrage_brain import ArbitrageOpportunity # Relative import
         opportunity = ArbitrageOpportunity(
             product_name=data['product_name'],
             source_platform=data['source_platform'],
