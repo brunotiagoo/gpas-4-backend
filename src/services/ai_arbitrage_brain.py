@@ -4,6 +4,7 @@ Sistema de IA que supera Tactical Arbitrage, SourceMogul e todos os outros
 Funcionalidades que NENHUMA outra plataforma tem
 """
 
+import os # Import os module
 import requests # Keep for potential future direct API calls, though not used by scraper
 import json
 import time
